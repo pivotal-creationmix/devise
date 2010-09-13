@@ -63,6 +63,10 @@ Devise.setup do |config|
   # Defines name of the authentication token params key
   # config.token_authentication_key = :auth_token
 
+  # ==> Configuration for :trackable
+  # Should the trackable module store ip addresses in the database?
+  # config.trackable_stores_ip_addresses = true
+
   # ==> General configuration
   # Load and configure the ORM. Supports :active_record (default), :mongo_mapper
   # (requires mongo_ext installed) and :data_mapper (experimental).

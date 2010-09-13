@@ -159,6 +159,10 @@ module Devise
   mattr_accessor :http_authentication_realm
   @@http_authentication_realm = "Application"
 
+  # Should the trackable module store ip addresses in the database?
+  mattr_accessor :trackable_stores_ip_addresses
+  @@trackable_stores_ip_addresses = true
+
   class << self
     # Default way to setup Devise. Run script/generate devise_install to create
     # a fresh initializer with all configuration values.
