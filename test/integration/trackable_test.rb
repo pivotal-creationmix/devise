@@ -47,8 +47,8 @@ class TrackableHooksTest < ActionController::IntegrationTest
     sign_in_as_user
     user.reload
 
-    assert_equal "0.0.0.0", user.current_sign_in_ip
-    assert_equal "0.0.0.0", user.last_sign_in_ip
+    assert_equal nil, user.current_sign_in_ip
+    assert_equal nil, user.last_sign_in_ip
 
     Devise.trackable_stores_ip_addresses = true
   end

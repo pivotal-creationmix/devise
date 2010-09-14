@@ -9,7 +9,7 @@ Warden::Manager.after_set_user :except => :fetch do |record, warden, options|
     if Devise.trackable_stores_ip_addresses
       old_current, new_current  = record.current_sign_in_ip, warden.request.remote_ip
     else
-      old_current, new_current = "0.0.0.0", "0.0.0.0"
+      old_current, new_current = nil, nil
     end
     record.last_sign_in_ip    = old_current || new_current
     record.current_sign_in_ip = new_current
