@@ -20,16 +20,7 @@ Devise.setup do |config|
   # authenticating an user, both parameters are required. Remember that those
   # parameters are used only when authenticating and not when retrieving from
   # session. If you need permissions, you should implement that in a before filter.
-  # You can also supply hash where the value is a boolean expliciting if authentication
-  # should be aborted or not if the value is not present. By default is empty.
   # config.authentication_keys = [ :email ]
-
-  # Configure parameters from the request object used for authentication. Each entry
-  # given should be a request method and it will automatically be passed to
-  # find_for_authentication method and considered in your model lookup. For instance,
-  # if you set :request_keys to [:subdomain], :subdomain will be used on authentication.
-  # The same considerations mentioned for authentication_keys also apply to request_keys.
-  # config.request_keys = []
 
   # Tell if authentication through request.params is enabled. True by default.
   # config.params_authenticatable = true
@@ -44,9 +35,18 @@ Devise.setup do |config|
   # config.http_authentication_realm = "Application"
 
   # ==> Configuration for :database_authenticatable
+  # Define which will be the encryption algorithm. Devise also supports encryptors
+  # from others authentication tools as :clearance_sha1, :authlogic_sha512 (then
+  # you should set stretches above to 20 for default behavior) and :restful_authentication_sha1
+  # (then you should set stretches to 10, and copy REST_AUTH_SITE_KEY to pepper)
+  config.encryptor = :bcrypt
+
   # For bcrypt, this is the cost for hashing the password and defaults to 10. If
   # using other encryptors, it sets how many times you want the password re-encrypted.
   config.stretches = 10
+
+  # Setup a pepper to generate the encrypted password.
+  config.pepper = <%= ActiveSupport::SecureRandom.hex(64).inspect %>
 
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time
@@ -66,10 +66,6 @@ Devise.setup do |config|
 
   # If true, extends the user's remember period when remembered via cookie.
   # config.extend_remember_period = false
-
-  # If true, uses the password salt as remember token. This should be turned
-  # to false if you are not using database authenticatable.
-  config.use_salt_as_remember_token = true
 
   # ==> Configuration for :validatable
   # Range for password length. Default is 6..20.
@@ -103,24 +99,13 @@ Devise.setup do |config|
   # Time interval to unlock the account if :time is enabled as unlock_strategy.
   # config.unlock_in = 1.hour
 
-  # ==> Configuration for :encryptable
-  # Allow you to use another encryption algorithm besides bcrypt (default). You can use
-  # :sha1, :sha512 or encryptors from others authentication tools as :clearance_sha1,
-  # :authlogic_sha512 (then you should set stretches above to 20 for default behavior)
-  # and :restful_authentication_sha1 (then you should set stretches to 10, and copy
-  # REST_AUTH_SITE_KEY to pepper)
-  # config.encryptor = :sha512
-
-  # Setup a pepper to generate the encrypted password.
-  config.pepper = <%= ActiveSupport::SecureRandom.hex(64).inspect %>
-
   # ==> Configuration for :token_authenticatable
   # Defines name of the authentication token params key
   # config.token_authentication_key = :auth_token
 
-  # If true, authentication through token does not store user in session and needs
-  # to be supplied on each request. Useful if you are using the token as API token.
-  # config.stateless_token = false
+  # ==> Configuration for :trackable
+  # Should the trackable module store ip addresses in the database?
+  # config.trackable_stores_ip_addresses = true
 
   # ==> Scopes configuration
   # Turn scoped views on. Before rendering "sessions/new", it will first check for

@@ -5,22 +5,28 @@
 
 Gem::Specification.new do |s|
   s.name = %q{devise}
-  s.version = "1.2.rc.cm1"
+  s.version = "1.2.0.1"
 
-  s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
+  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jos\303\251 Valim", "Carlos Ant\303\264nio"]
-  s.date = %q{2010-10-10}
+  s.date = %q{2010-07-27}
   s.description = %q{Flexible authentication solution for Rails with Warden}
   s.email = %q{contact@plataformatec.com.br}
   s.extra_rdoc_files = [
     "CHANGELOG.rdoc",
+     "Gemfile.lock",
      "MIT-LICENSE",
-     "README.rdoc"
+     "README.rdoc",
+     "TODO"
   ]
   s.files = [
     "CHANGELOG.rdoc",
+     "Gemfile",
+     "Gemfile.lock",
      "MIT-LICENSE",
      "README.rdoc",
+     "Rakefile",
+     "TODO",
      "app/controllers/devise/confirmations_controller.rb",
      "app/controllers/devise/oauth_callbacks_controller.rb",
      "app/controllers/devise/passwords_controller.rb",
@@ -48,6 +54,7 @@ Gem::Specification.new do |s|
      "lib/devise/controllers/url_helpers.rb",
      "lib/devise/encryptors/authlogic_sha512.rb",
      "lib/devise/encryptors/base.rb",
+     "lib/devise/encryptors/bcrypt.rb",
      "lib/devise/encryptors/clearance_sha1.rb",
      "lib/devise/encryptors/restful_authentication_sha1.rb",
      "lib/devise/encryptors/sha1.rb",
@@ -63,7 +70,6 @@ Gem::Specification.new do |s|
      "lib/devise/models/authenticatable.rb",
      "lib/devise/models/confirmable.rb",
      "lib/devise/models/database_authenticatable.rb",
-     "lib/devise/models/encryptable.rb",
      "lib/devise/models/lockable.rb",
      "lib/devise/models/oauthable.rb",
      "lib/devise/models/recoverable.rb",
@@ -134,7 +140,6 @@ Gem::Specification.new do |s|
      "test/mapping_test.rb",
      "test/models/confirmable_test.rb",
      "test/models/database_authenticatable_test.rb",
-     "test/models/encryptable_test.rb",
      "test/models/lockable_test.rb",
      "test/models/oauthable_test.rb",
      "test/models/recoverable_test.rb",
@@ -151,12 +156,12 @@ Gem::Specification.new do |s|
      "test/rails_app/app/active_record/admin.rb",
      "test/rails_app/app/active_record/shim.rb",
      "test/rails_app/app/active_record/user.rb",
-     "test/rails_app/app/controllers/admins/sessions_controller.rb",
      "test/rails_app/app/controllers/admins_controller.rb",
      "test/rails_app/app/controllers/application_controller.rb",
      "test/rails_app/app/controllers/home_controller.rb",
      "test/rails_app/app/controllers/publisher/registrations_controller.rb",
      "test/rails_app/app/controllers/publisher/sessions_controller.rb",
+     "test/rails_app/app/controllers/sessions_controller.rb",
      "test/rails_app/app/controllers/users_controller.rb",
      "test/rails_app/app/helpers/application_helper.rb",
      "test/rails_app/app/mongoid/admin.rb",
@@ -191,17 +196,14 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<warden>, ["~> 1.0.0"])
-      s.add_runtime_dependency(%q<orm_adapter>, ["~> 0.0.2"])
+      s.add_runtime_dependency(%q<warden>, ["~> 0.10.7"])
       s.add_runtime_dependency(%q<bcrypt-ruby>, ["~> 2.1.2"])
     else
-      s.add_dependency(%q<warden>, ["~> 1.0.0"])
-      s.add_dependency(%q<orm_adapter>, ["~> 0.0.2"])
+      s.add_dependency(%q<warden>, ["~> 0.10.7"])
       s.add_dependency(%q<bcrypt-ruby>, ["~> 2.1.2"])
     end
   else
-    s.add_dependency(%q<warden>, ["~> 1.0.0"])
-    s.add_dependency(%q<orm_adapter>, ["~> 0.0.2"])
+    s.add_dependency(%q<warden>, ["~> 0.10.7"])
     s.add_dependency(%q<bcrypt-ruby>, ["~> 2.1.2"])
   end
 end
